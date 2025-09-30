@@ -1,0 +1,9 @@
+{
+	"name": "ciheb",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "6b0a3acb-82d8-412b-99e3-83b8843d71f8",
+		"tenantId": "55432f12-ace1-4ced-bb12-ce0e58e2c95b"
+	}
+}
