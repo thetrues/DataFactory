@@ -1,0 +1,114 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "tblVisits",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "tblPatients",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				},
+				{
+					"dataset": {
+						"referenceName": "tblTests",
+						"type": "DatasetReference"
+					},
+					"name": "source3"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "join1"
+				}
+			],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source(output(",
+				"          Id as integer,",
+				"          DivisionName as string,",
+				"          PatientID as string,",
+				"          DateOfBirth as timestamp,",
+				"          Sex as string,",
+				"          DateOfDeath as timestamp,",
+				"          DateConfirmedHIVPositive as timestamp,",
+				"          ReferredFromID as string,",
+				"          FileRef as string,",
+				"          MaritalStatus as string,",
+				"          DrugAllergies as string,",
+				"          CommunitySupportOrg as string,",
+				"          PriorExposure as string,",
+				"          TransferInId as string,",
+				"          TBID as string,",
+				"          HBCPatientCode as string,",
+				"          TheHeight as double,",
+				"          UserNumber as integer,",
+				"          DateReadyStartART as timestamp,",
+				"          StatusAtEnrollment as string,",
+				"          HTCNumber as string,",
+				"          HFRRegionCode as string,",
+				"          HFRDistrictCode as string,",
+				"          HFRDivisionCode as string,",
+				"          HFRWardCode as string,",
+				"          HFRVillMtaaCode as string,",
+				"          DateJoinedGroup as timestamp,",
+				"          HFRCouncilName as string,",
+				"          VillageMtaaName as string,",
+				"          HFRCouncilCode as string,",
+				"          MissingFPReasonID as integer,",
+				"          ReferredFromFacilityCode as string,",
+				"          DateDiagnosedHIVPositive as timestamp,",
+				"          ClientId as string,",
+				"          SMSConsentTS as string,",
+				"          ClientUniqueIdentifierType as string,",
+				"          ClientUniqueIdentifierCode as string,",
+				"          CTVisitId as string,",
+				"          BiometricsEnrollmentDate as timestamp,",
+				"          ReferredFromOtherSpecify as string,",
+				"          PriorDrugAllergies as string,",
+				"          PriorExposureOtherSpecify as string,",
+				"          DateEnrolled as timestamp,",
+				"          JoinedSupportOrganisation as string,",
+				"          VerificationStatus as string,",
+				"          VerificationStatusDate as timestamp,",
+				"          HFRCode as string,",
+				"          ArchiveStatus as string,",
+				"          ClientBiometryRegStatus as string,",
+				"          WHOStage_StartART as string,",
+				"          CD4_StartART as string,",
+				"          Weight_StartART as string,",
+				"          SerumCrAgTest_StartART as string,",
+				"          ClientCategory_StartART as string,",
+				"          Pregnant_StartART as string,",
+				"          Breastfeeding_StartART as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source2",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source3",
+				"source1, source2 join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1"
+			]
+		}
+	}
+}
