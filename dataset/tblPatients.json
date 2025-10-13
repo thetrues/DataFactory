@@ -1,5 +1,5 @@
 {
-	"name": "tblVisits",
+	"name": "tblPatients",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "SqlServer1",
@@ -10,7 +10,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tblVisits"
+			"table": "tblPatients"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
